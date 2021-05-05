@@ -1,3 +1,7 @@
+# Jyoti Yadav assignment
+# Implementation of the Simplex algorithm with the below problem statement, made as project for the
+# combinatorial and decision making course's second module taught by Vittorio Maniezzo
+
 '''
 A manufacturer company produces wooden tables and chairs ,they have only two resources wood(board feet) and labor
 It takes 30bf of wood to make a table and 20 bf of wood to make a chair with the total consumption of wood as 300 bf
@@ -13,6 +17,7 @@ Constraint      30X1+20X2<= 300 (wood constraint: 300bf available)
 '''
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 # generates an empty matrix with adequate size for variables and constraints.
 def gen_matrix(var,cons):
@@ -323,6 +328,8 @@ def minz(table, output='summary'):
     else:
         return val
 
+
+
 if __name__ == "__main__":
 
     m = gen_matrix(2,2)
@@ -330,3 +337,35 @@ if __name__ == "__main__":
     constrain(m,'5,10,L,110')
     obj(m,'6,8,0')
     print(maxz(m))
+
+    # plot the feasible region
+    d = np.linspace(-2,16,300)
+    x,y = np.meshgrid(d,d)
+    plt.imshow( ((y>=2) & (2*y<=25-x) & (4*y>=2*x-8) & (y<=2*x-5)).astype(int) ,
+                extent=(x.min(),x.max(),y.min(),y.max()),origin="lower", cmap="Greys", alpha = 0.3);
+
+
+
+
+
+    # plot the lines defining the constraints
+    x = np.linspace(0, 16, 2000)
+    # y >= 2
+    y1 = (x*0) + 2
+    # 2y <= 25 - x
+    y2 = (25-x)/2.0
+    # 4y >= 2x - 8
+    y3 = (2*x-8)/4.0
+    # y <= 2x - 5
+    y4 = 2 * x -5
+
+    # Make plot
+    plt.plot(x, 2*np.ones_like(y1))
+    plt.plot(x, y2, label=r'$2y\leq25-x$')
+    plt.plot(x, y3, label=r'$4y\geq 2x - 8$')
+    plt.plot(x, y4, label=r'$y\leq 2x-5$')
+    plt.xlim(0,16)
+    plt.ylim(0,11)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.xlabel(r'$x$')
+    plt.ylabel(r'$y$')
