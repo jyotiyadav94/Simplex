@@ -1,4 +1,4 @@
-# Jyoti Yadav assignment
+Jyoti Yadav assignment
 Implementation of the Simplex algorithm with the below problem statement, made as project for the
 combinatorial and decision making course's second module taught by Vittorio Maniezzo
 
