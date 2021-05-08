@@ -209,6 +209,7 @@ else:
     print(Fraction(str(sum)).limit_denominator(100))
 print("\n")
 
+print("*********************Visualization*****************************")
 
 x_1 = np.linspace(0, 30, 1000)
 x_2 = np.linspace(0, 30, 1000)
