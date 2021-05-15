@@ -5,13 +5,13 @@
 '''
 A manufacturer company produces wooden tables and chairs ,they have only two resources wood(board feet) and labor
 It takes 30bf of wood to make a table and 20 bf of wood to make a chair with the total consumption of wood as 300 bf
-It takes 5 hours of labour to make a table and 10 hours of about to make a chair with the total of 110 hours of labor availability
+It takes 5 hours of labour to make a table and 10 hours of labour to make a chair with the total of 110 hours of labor availability
 The unit profit for tables is $6 and for chair is $8
-And the objective of the comp   any is to get the maximum increase in profit
-Here X1 and X2 variables are tables and chairs
+And the objective of the company is to get the maximum increase in profit
+Here X1 and X2 are variables for tables and chairs
 
-Maximize        Z=6X1+8X2       (objective function)
-Constraint      30X1+20X2<= 300 (wood constraint: 300bf available)
+Maximize        6X1+8X2         (objective function)
+Constraint      30X1+20X2<=300  (wood constraint: 300bf available)
                 5X1+10X2<=110   (labor constraint:110 hours available)
                 X1,X2>=0
 '''
@@ -20,7 +20,7 @@ import numpy as np
 from fractions import Fraction
 import matplotlib.pyplot as plt
 
-def print_console():
+def printConsole():
     print("Bm \tCb \tSol \tX1 \tX2 \tX3 \tX4")
     for row in table:
         for i in row:
@@ -28,7 +28,7 @@ def print_console():
         print()
     print()
 
-def plot_feasible_Region():
+def plot():
     x1 = np.linspace(0, 30, 1000)
     x2 = np.linspace(0, 30, 1000)
     # plot
@@ -78,7 +78,7 @@ print(table,"\n")
 
 minimum=0
 print("Table at iteration = 0")
-print_console()
+printConsole()
 # when optimality reached it will be made 1
 reach = 0
 itr = 1
@@ -88,7 +88,7 @@ alt = 0
 while reach == 0:
     print("Iteration: ", end =' ')
     print(itr)
-    print_console()
+    printConsole()
 
     # calculate Relative profits-> cj - zj for non-basics
     i = 0
@@ -191,7 +191,7 @@ if unbound == 1:
 if alt == 1:
     print("optimal table:")
 
-print_console()
+printConsole()
 print("Maximum Profit: ", end =" ")
 
 basis = []
@@ -204,10 +204,10 @@ while i<len(table):
     i+= 1
 
 if minimum == 1:
-    print(-Fraction(str(sum)).limit_denominator(100))
+    print(-Fraction(str(sum)).limit_denominator(100),"\n")
 else:
-    print(Fraction(str(sum)).limit_denominator(100))
-print("\n")
+    print(Fraction(str(sum)).limit_denominator(100),"\n")
 
 print("*********************Visualization*****************************")
-plot_feasible_Region()
+
+plot()
